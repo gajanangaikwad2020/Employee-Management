@@ -74,7 +74,7 @@ public class EmployeeController
 		}
 		else
 		{
-			LOG.error("Employee Not Found");
+			LOG.error("Employee Not Found for Update");
 			throw new ResourceNotFoundException("Employee Not Found For Update with Employee id :->"+employee.getEmpId());
 		}
 		
