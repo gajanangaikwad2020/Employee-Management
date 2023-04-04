@@ -15,7 +15,9 @@ public interface EmployeeService
 
 	public List<Employee> getAllEmployee();
 
-	public void deleteEmployeeById(int empId);
+	public boolean deleteEmployeeById(int empId);
+
+	public List<Employee> getEmployeeByName(String name);
 
 	
 //	public List<Employee> getEmployeeByName(String name); 

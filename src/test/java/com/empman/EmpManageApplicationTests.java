@@ -28,26 +28,26 @@ class EmpManageApplicationTests
 	@Order(1)
 	public void testSaveEmployee()
 	{
-		Employee empTest=new Employee(0,"Ramesh Nikam","Hingoli", 90000, "Team Lead");
+		Employee empTest=new Employee(0,"Yadav Mane","Nagpur", 75000, "Admin");
 		employeeDao.save(empTest);
-		assertNotNull(employeeDao.findById(11).get());
+		assertNotNull(employeeDao.findById(15).get());
 	}
 
 	@Test
 	@Order(2)
 	public void testUpdateEmployee()
 	{
-		Employee empTest=new Employee(11,"Ramesh Nikam","Nanded", 90000, "Team Lead");
+		Employee empTest=new Employee(15,"Yadav Mane","Nagpur", 70000, "Admin");
 		employeeDao.save(empTest);
-		assertNotNull(employeeDao.findById(11).get());
+		assertNotNull(employeeDao.findById(15).get());
 	}
 	
 	@Test
 	@Order(3)
 	public void testGetEmpById()
 	{
-		Optional<Employee> empDb = employeeDao.findById(11);
-		assertEquals("Nanded",empDb.get().getEmpAddress());
+		Optional<Employee> empDb = employeeDao.findById(15);
+		assertEquals("Nagpur",empDb.get().getEmpAddress());
 	}
 	
 	@Test
@@ -55,15 +55,15 @@ class EmpManageApplicationTests
 	public void testGetAllEmp()
 	{
 		 List<Employee> empList = employeeDao.findAll();
-		assertThat(empList).size().isGreaterThan(4);  // or >0
+		 assertThat(empList).size().isGreaterThan(6);  // or >0
 	}
 	
 	@Test
 	@Order(5)
 	public void testDeleteEmpById()
 	{
-		employeeDao.deleteById(11);
-		assertThat(employeeDao.existsById(8)).isFalse();  
+		employeeDao.deleteById(15);
+		assertThat(employeeDao.existsById(15)).isFalse();  
 	}
 	
 }

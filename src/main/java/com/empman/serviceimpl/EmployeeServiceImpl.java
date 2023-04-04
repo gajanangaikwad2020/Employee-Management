@@ -1,5 +1,6 @@
 package com.empman.serviceimpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,8 +27,7 @@ public class EmployeeServiceImpl implements EmployeeService
 			isSaved=true;
 		else
 			isSaved=false;
-		return isSaved;
-			
+		return isSaved;		
 	}
 	
 	@Override
@@ -39,9 +39,7 @@ public class EmployeeServiceImpl implements EmployeeService
 			isSaved=true;
 		else
 			isSaved=false;
-		return isSaved;
-		
-		
+		return isSaved;	
 	}
 
 //	@Override
@@ -65,18 +63,35 @@ public class EmployeeServiceImpl implements EmployeeService
 	}
 
 	@Override
-	public void deleteEmployeeById(int empId) 
+	public boolean deleteEmployeeById(int empId) 
 	{
-		employeeDao.deleteById(empId);
-		System.out.println("Employee Deleted");
+		boolean isDeleted=false;
+		Optional<Employee> empExist = employeeDao.findById(empId);
+		if(empExist.isPresent())
+		{
+			employeeDao.deleteById(empId);
+			isDeleted=true;
+		}	
+		
+		return isDeleted;
+			
+//		System.out.println("Employee Deleted");
 		
 	}
 
-//	@Override
-//	public List<Employee> getEmployeeByName(String empName) {
-//		employeeDao.findAllById(empName);
-//		return null;
-//	}
+	@Override
+	public List<Employee> getEmployeeByName(String empName) {
+		List<Employee> findAll = employeeDao.findAll();
+		List<Employee> empListByName=new ArrayList<>();
+		for (Employee employee : findAll) 
+		{
+			if(employee.getEmpName().equals(empName))
+			{
+				empListByName.add(employee);
+			}
+		}
+		return empListByName;
+	}
 
 	
 }
